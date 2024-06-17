@@ -7,4 +7,10 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     dialect: 'mysql',
 });
 
+sequelize.sync().then(() => {
+    console.log('Database synchronized');
+}).catch((error) => {
+    console.error('Error synchronizing database:', error);
+});
+
 module.exports = sequelize;
