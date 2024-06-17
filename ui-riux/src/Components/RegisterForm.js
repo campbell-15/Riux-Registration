@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import GoogleOAuthButton from './GoogleOAuthButton';
 import FeedbackMessage from './FeedbackMessage';
-import './styles.css';
+import '../styles.css';
 
 const RegisterForm = () => {
     const [name, setName] = useState('');

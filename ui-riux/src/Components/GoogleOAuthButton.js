@@ -1,20 +1,21 @@
 // src/components/GoogleOAuthButton.js
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
 
 const GoogleOAuthButton = ({ setFeedback }) => {
-    const responseGoogle = (response) => {
+    const onSuccess = (response) => {
         console.log(response);
-        // TODO: Implement Google OAuth logic
+        // Handle the response and set feedback
+    };
+
+    const onError = () => {
+        setFeedback('Google sign-in was unsuccessful. Please try again later.');
     };
 
     return (
         <GoogleLogin
-            clientId="YOUR_GOOGLE_CLIENT_ID"
-            buttonText="Continue with Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={'single_host_origin'}
+            onSuccess={onSuccess}
+            onError={onError}
         />
     );
 };
