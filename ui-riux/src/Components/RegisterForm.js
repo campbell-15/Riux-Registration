@@ -1,8 +1,9 @@
 // src/components/RegisterForm.js
 import React, { useState } from 'react';
+import axios from 'axios';
 import GoogleOAuthButton from './GoogleOAuthButton';
 import FeedbackMessage from './FeedbackMessage';
-import '../styles.css';
+import '../styles.css'; // Adjusted path
 
 const RegisterForm = () => {
     const [name, setName] = useState('');
@@ -12,7 +13,19 @@ const RegisterForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO: Implement registration logic
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/register', {
+                name,
+                email,
+                password,
+            });
+
+            setFeedback('Registration successful!');
+            // Optionally, you can store the token and user ID here
+        } catch (error) {
+            setFeedback('Registration failed. Please try again.');
+        }
     };
 
     return (
