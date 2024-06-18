@@ -5,6 +5,7 @@
     const bcrypt = require('bcryptjs');
     const mysql = require('mysql2');
     require('dotenv').config();
+    const cors = require('cors');
 
     const app = express();
     const PORT = process.env.PORT || 5000;
@@ -12,6 +13,12 @@
     // Middleware
     app.use(bodyParser.json());
     app.use(cookieParser());
+
+    // CORS configuration
+    app.use(cors({
+        origin: 'http://localhost:3000', // Allow requests from localhost:3000
+        credentials: true, // Include cookies in requests (if applicable)
+    }));
 
     // MySQL connection
     const db = mysql.createConnection({
